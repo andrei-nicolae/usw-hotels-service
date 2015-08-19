@@ -20,7 +20,7 @@ $registry->set('config.string_hotel_identifier_limit', 3);
 $registry->set('helper.generator-hotel-item-body', function ($identifier) use ($registry) {
     return [
         'identifier' => $identifier,
-        'name' => 'Hotel '  . ucwords($identifier) . ' ' . str_repeat('*', ceil(strlen($identifier) / 2)),
+        'name' => 'Hotel '  . ucwords($identifier) . ' ' . str_repeat('*', strlen($identifier)),
         'mobile' => '0421.000.000',
         'country' => 'Romania',
         'geo' => [
