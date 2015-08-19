@@ -2,15 +2,9 @@
   "name": "bogdananton/usw-hotels-service",
   "license": "MIT",
   "require": {
-    "php": "5.3",
+    "php": "^5.3",
     "league/route": "1.1.0",
     "windwalker/registry": "2.0.8",
-    "respect/validation": "2.0.x-dev",
-    "bobthecow/faker": "dev-master"
-  },
-  "autoload": {
-    "psr-4": {
-      "usw\\Hotels\\": "source/"
-    }
+    "respect/validation": "2.0.x-dev"
   }
 }

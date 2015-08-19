@@ -21,11 +21,11 @@ $registry->set('helper.generator-hotel-item-body', function ($identifier) use ($
     return [
         'identifier' => $identifier,
         'name' => 'Hotel '  . ucwords($identifier) . ' ' . str_repeat('*', ceil(strlen($identifier) / 2)),
-        'mobile' => \Faker\PhoneNumber::phoneNumber(),
-        'country' => \Faker\Address::country(),
+        'mobile' => '0421.000.000',
+        'country' => 'Romania',
         'geo' => [
-            'lat' => \Faker\Geo::latitude(),
-            'lon' => \Faker\Geo::longitude()
+            'lat' => '41.222',
+            'lon' => '26.222'
         ],
         '@self' => '/hotel/' . $identifier,
         '@rooms' => '/rooms?hotel=' . $identifier,
@@ -207,19 +207,10 @@ try {
     $response->send();
 
 } catch (\League\Route\Http\Exception\NotFoundException $exception) {
-    $errorMessage = 'Invalid call. Use GET /hotels to get started.';
+    $response = new Response(['error' => 'Invalid call. Use GET /hotels to get started.'], 404);
 
 } catch (\Exception $e) {
-    $errorMessage = $e->getMessage();
+    $response = new Response(['error' => $e->getMessage()], 400);
 }
 
-if ($errorMessage !== '') {
-    $response = new Response([
-        'error' => $errorMessage
-
-    ], 404, [
-        'Link' => '</hotels rel="redirect" />'
-    ]);
-
-    $response->send();
-}
+$response->send();
